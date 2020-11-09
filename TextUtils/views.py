@@ -1,18 +1,17 @@
 ##Generated file on own -Ayush Nanda
 
-from django.http import HttpResponse
+from django.http import HttpResponse          #while returning normal info return HttpResponse
 
-##def index(request):
-  ##  return HttpResponse('''<h1>Connect us on Github</h1> <a href="https://github.com/"> GITHUB <a/>''')
-
-##def about(request):
- ##   return HttpResponse("about us")
+from django.shortcuts import render           #while using templates
 
 def index(request):
-    return HttpResponse("Home")
+    return render(request, 'index.html')
+   # return HttpResponse("Home")
 
-def removepunc(request):
-    return HttpResponse("remove punc")
+def analyse(request):
 
-def capfirst(request):
-    return HttpResponse("captialize first")
+    # Get the text
+    djtext = request.GET.get('text', 'default')
+    analysed=djtext
+    params = {'purpose': "Removing Punctuations", 'analysed_text': analysed}
+    return render(request,'analyse.html',params)
