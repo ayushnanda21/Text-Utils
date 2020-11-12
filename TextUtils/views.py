@@ -10,14 +10,14 @@ def index(request):
 
 def analyze(request):
     # Get the text
-    djtext = request.GET.get('text', 'default')
+    djtext = request.POST.get('text', 'default')
     
     #Check checkbox values
-    removepunc=request.GET.get('removepunc','off')
-    fullcaps = request.GET.get('fullcaps', 'off')
-    newlineremover=request.GET.get('newlineremover','off')
-    spaceremover=request.GET.get('spaceremover','off')
-    charactercount=request.GET.get('charactercount','off')
+    removepunc=request.POST.get('removepunc','off')
+    fullcaps = request.POST.get('fullcaps', 'off')
+    newlineremover=request.POST.get('newlineremover','off')
+    spaceremover=request.POST.get('spaceremover','off')
+    charactercount=request.POST.get('charactercount','off')
 
 
     #Check which checkbox is on
@@ -38,10 +38,11 @@ def analyze(request):
         return render(request, 'analyse.html', params)
 
     elif(newlineremover=="on"):
-        analyzed=""
+        analyzed = ""
         for char in djtext:
-            if char !="/n":
+            if char != "\n" and char!="\r":
                 analyzed = analyzed + char
+
         params = {'purpose': 'Removed new lines', 'analyzed_text': analyzed}
         return render(request, 'analyse.html', params)
     

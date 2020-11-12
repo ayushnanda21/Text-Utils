@@ -48,7 +48,8 @@
 <div class="container"
     
     <div class="form-group">
-        <form action='/analyse' method='get'>
+        <form action='/analyse' method='post'> {% csrf_token %}
+        
                 <label for="exampleFormControlTextarea1">Enter your text here</label>
                 <textarea name='text' class="form-control" id="exampleFormControlTextarea1" rows="9"></textarea>
 
