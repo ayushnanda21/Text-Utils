@@ -11,7 +11,7 @@ def index(request):
 def analyze(request):
     # Get the text
     djtext = request.GET.get('text', 'default')
-
+    
     #Check checkbox values
     removepunc=request.GET.get('removepunc','off')
     fullcaps = request.GET.get('fullcaps', 'off')
